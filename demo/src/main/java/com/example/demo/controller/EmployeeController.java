@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.DTO.EmployeeDepartmentDTO;
 import com.example.demo.entity.Employee;
+import com.example.demo.service.EmployeeJoinService;
 import com.example.demo.service.EmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ public class EmployeeController {
 
 	@Autowired
     private EmployeeService service;
+	@Autowired
+	private EmployeeJoinService joinService;
 
 	/*
 	 * public EmployeeController(EmployeeService service) { this.service = service;
@@ -47,5 +51,13 @@ public class EmployeeController {
     public String delete(@PathVariable Long id) {
         service.delete(id);
         return "Employee deleted successfully";
+    }
+    
+    @GetMapping("/department-details")
+    public List<EmployeeDepartmentDTO>
+    getEmployeeDepartmentDetails() {
+
+        return joinService
+                .getEmployeeDepartmentDetails();
     }
 }
