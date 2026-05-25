@@ -1,7 +1,9 @@
-package com.example.demo.cotroller;
+package com.example.demo.controller;
 
 import com.example.demo.entity.Employee;
 import com.example.demo.service.EmployeeService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,11 +12,13 @@ import java.util.List;
 @RequestMapping("/employees")
 public class EmployeeController {
 
-    private final EmployeeService service;
+	@Autowired
+    private EmployeeService service;
 
-    public EmployeeController(EmployeeService service) {
-        this.service = service;
-    }
+	/*
+	 * public EmployeeController(EmployeeService service) { this.service = service;
+	 * }
+	 */
 
     @PostMapping
     public Employee create(@RequestBody Employee employee) {
